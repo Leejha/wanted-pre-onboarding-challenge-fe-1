@@ -1,8 +1,9 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
-import LoginPage from '../pages/LoginPage';
-import SignupPage from '../pages/SignupPage';
 import Path from './Path';
+
+const LoginPage = React.lazy(() => import('pages/LoginPage'));
+const SignupPage = React.lazy(() => import('pages/SignupPage'));
 
 function Routing() {
   return (
