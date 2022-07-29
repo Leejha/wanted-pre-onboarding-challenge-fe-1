@@ -1,9 +1,11 @@
 import React from 'react';
 import Routing from './routes/Routing';
+import GlobalStyles from './styles/globalStyles';
 
 function App() {
   return (
-    <div className="App">
+    <div>
+      <GlobalStyles />
       <Routing />
     </div>
   );
