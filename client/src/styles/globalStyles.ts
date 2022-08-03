@@ -52,6 +52,14 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
+
+button {
+	border: 0 none;
+	background-color: transparent;
+	cursor: pointer;
+	padding: 0;
+}
+
 `;
 
 export default GlobalStyles;
