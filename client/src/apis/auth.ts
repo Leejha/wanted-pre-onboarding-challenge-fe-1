@@ -10,11 +10,19 @@ interface LoginRequest {
   password: string;
 }
 
+interface LoginResponse {
+  message: string;
+  token: string;
+}
+
 export const login = async ({ email, password }: LoginRequest) => {
-  const response = await axios.post(`${SERVER_URL}/users/login`, {
-    email,
-    password,
-  });
+  const response = await axios.post<LoginResponse>(
+    `${SERVER_URL}/users/login`,
+    {
+      email,
+      password,
+    }
+  );
   return response.data;
 };
 
@@ -22,18 +30,18 @@ export const login = async ({ email, password }: LoginRequest) => {
  * Signup
  */
 
-interface SignUpRequest {
+interface SignupRequest {
   email: string;
   password: string;
 }
 
-interface SignUpResponse {
+interface SignupResponse {
   message: string;
   token: string;
 }
 
-export const signup = async ({ email, password }: SignUpRequest) => {
-  const response = await axios.post<SignUpResponse>(
+export const signup = async ({ email, password }: SignupRequest) => {
+  const response = await axios.post<SignupResponse>(
     `${SERVER_URL}/users/create`,
     {
       email,
