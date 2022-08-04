@@ -3,8 +3,7 @@ import React from 'react';
 
 function LoginPage() {
   return (
-    <AuthLayout>
-      <h1>로그인</h1>
+    <AuthLayout title="로그인">
       <LoginFormContainer />
     </AuthLayout>
   );
