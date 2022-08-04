@@ -1,13 +1,15 @@
 import React from 'react';
-import Routing from './routes/Routing';
+import { PrivateRouting, PublicRouting } from './routes/Routing';
 import GlobalStyles from './styles/globalStyles';
+import { isLogin } from 'utils/checkLogin';
+import { Header } from 'components';
 
 function App() {
   return (
-    <div>
+    <>
       <GlobalStyles />
-      <Routing />
-    </div>
+      {isLogin() ? <PrivateRouting /> : <PublicRouting />}
+    </>
   );
 }
 
