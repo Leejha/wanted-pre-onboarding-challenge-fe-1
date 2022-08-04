@@ -3,10 +3,16 @@ import styled from 'styled-components';
 
 interface Props {
   children: ReactNode;
+  title: string;
 }
 
-function AuthLayout({ children }: Props) {
-  return <Container>{children}</Container>;
+function AuthLayout({ children, title }: Props) {
+  return (
+    <Container>
+      <Title>{title}</Title>
+      {children}
+    </Container>
+  );
 }
 
 const Container = styled.div`
@@ -16,6 +22,13 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+`;
+
+const Title = styled.h1`
+  font-size: 20px;
+  font-weight: bold;
+  text-align: left;
+  margin-bottom: 20px;
 `;
 
 export default AuthLayout;
