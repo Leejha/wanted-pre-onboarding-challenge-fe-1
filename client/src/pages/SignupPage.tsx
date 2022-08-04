@@ -1,10 +1,11 @@
+import { AuthLayout, SignupFormContainer } from 'components';
 import React from 'react';
 
 function SignupPage() {
   return (
-    <div>
-      <h1>Signup</h1>
-    </div>
+    <AuthLayout title="회원가입">
+      <SignupFormContainer />
+    </AuthLayout>
   );
 }
 
