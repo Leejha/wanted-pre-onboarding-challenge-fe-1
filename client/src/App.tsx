@@ -11,6 +11,7 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <GlobalStyles />
+      <Header />
       {isLogin() ? <PrivateRouting /> : <PublicRouting />}
     </QueryClientProvider>
   );
