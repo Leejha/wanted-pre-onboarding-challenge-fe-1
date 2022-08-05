@@ -1,11 +1,12 @@
-import { TodoContainer } from 'components';
+import { TodoContainer, TodoDetailContainer } from 'components/home';
 import React from 'react';
 
 function HomePage() {
   return (
-    <div>
+    <>
       <TodoContainer />
-    </div>
+      <TodoDetailContainer />
+    </>
   );
 }
 
