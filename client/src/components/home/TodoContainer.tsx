@@ -76,7 +76,7 @@ function TodoContainer() {
   return (
     <Container>
       <Inner>
-        <h1>Todo</h1>
+        <TodoH1>Todo</TodoH1>
         <List>
           {todos.map((todo) => (
             <Item key={todo.id} onClick={() => navigate(`/todo/${todo.id}`)}>
@@ -87,32 +87,32 @@ function TodoContainer() {
 
         {isOpenTodoForm ? (
           <TodoForm onSubmit={onCreateTodo}>
-            <Input
+            <TodoFormTitleInput
               type="text"
               value={title}
               height={40}
               placeholder="제목을 입력해주세요"
               onChange={onChangeTitle}
             />
-            <textarea
+            <TodoFormContentTextarea
               value={content}
               placeholder="내용을 입력해주세요"
               onChange={onChangeContent}
             />
             <ButtonGroup>
-              <Button
+              <TodoFormButton
                 type="button"
                 variant="secondary"
                 onClick={onToggleTodoForm}
               >
                 취소
-              </Button>
-              <Button type="submit">추가</Button>
+              </TodoFormButton>
+              <TodoFormButton type="submit">추가</TodoFormButton>
             </ButtonGroup>
           </TodoForm>
         ) : (
           <AddTodoButton onClick={onToggleTodoForm}>
-            <span className="material-symbols-outlined">add</span>
+            <AddIcon className="material-symbols-outlined">add</AddIcon>
             할일 추가하기
           </AddTodoButton>
         )}
@@ -136,6 +136,12 @@ const Inner = styled.div`
   width: 500px;
 `;
 
+const TodoH1 = styled.h1`
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+`;
+
 const List = styled.ul``;
 
 const Item = styled.li`
@@ -156,10 +162,11 @@ const AddTodoButton = styled.div`
   cursor: pointer;
   margin-top: 10px;
   color: #4848e9;
-  span {
-    font-size: 14px;
-    margin-right: 6px;
-  }
+`;
+
+const AddIcon = styled.span`
+  font-size: 14px;
+  margin-right: 6px;
 `;
 
 const ButtonGroup = styled.div`
@@ -167,32 +174,29 @@ const ButtonGroup = styled.div`
   justify-content: flex-end;
 `;
 
-const Title = styled.div``;
-
-const Content = styled.div`
-  font-size: 12px;
-`;
-
 const TodoForm = styled.form`
   padding: 10px;
   margin-top: 10px;
   border-radius: 8px;
-  input {
-    border: none;
-    display: block;
-    width: 100%;
-    margin-bottom: 10px;
-  }
-  textarea {
-    resize: none;
-    border: none;
-    outline: none;
-    padding: 4px 8px;
-    width: 100%;
-    height: 80px;
-    box-sizing: border-box;
-  }
-  button {
-    margin-right: 8px;
-  }
+`;
+
+const TodoFormTitleInput = styled(Input)`
+  border: none;
+  display: block;
+  width: 100%;
+  margin-bottom: 10px;
+`;
+
+const TodoFormContentTextarea = styled.textarea`
+  resize: none;
+  border: none;
+  outline: none;
+  padding: 4px 8px;
+  width: 100%;
+  height: 80px;
+  box-sizing: border-box;
+`;
+
+const TodoFormButton = styled(Button)`
+  margin-right: 8px;
 `;
