@@ -1,63 +1,9 @@
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import {
-  createTodo,
-  CreateTodoRequest,
-  deleteTodo,
-  DeleteTodoRequest,
-  getTodos,
-  updateTodo,
-  UpdateTodoRequest,
-} from 'apis/todo';
 import { useInput } from 'hooks';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { Input, Button } from 'components/common';
-
-export function useTodoQuery() {
-  const QueryKey = 'todos';
-  const queryClient = useQueryClient();
-
-  const { data } = useQuery([QueryKey], () => getTodos(), {
-    cacheTime: 5 * 1000 * 60,
-    staleTime: 5 * 1000 * 60,
-  });
-
-  const { mutate: mutateCreateTodo } = useMutation(
-    ({ title, content }: CreateTodoRequest) => createTodo({ title, content }),
-    {
-      onSuccess: () => {
-        queryClient.invalidateQueries([QueryKey]);
-      },
-    }
-  );
-
-  const { mutate: mutateUpdateTodo } = useMutation(
-    ({ todoId, title, content }: UpdateTodoRequest) =>
-      updateTodo({ todoId, title, content }),
-    {
-      onSuccess: () => {
-        queryClient.invalidateQueries([QueryKey]);
-      },
-    }
-  );
-
-  const { mutate: mutateDeleteTodo } = useMutation(
-    ({ todoId }: DeleteTodoRequest) => deleteTodo({ todoId }),
-    {
-      onSuccess: () => {
-        queryClient.invalidateQueries([QueryKey]);
-      },
-    }
-  );
-
-  return {
-    todos: data?.data || [],
-    mutateCreateTodo,
-    mutateUpdateTodo,
-    mutateDeleteTodo,
-  };
-}
+import { useTodoQuery } from 'hooks/queries/useTodoQuery';
 
 function TodoContainer() {
   const [title, onChangeTitle] = useInput('');

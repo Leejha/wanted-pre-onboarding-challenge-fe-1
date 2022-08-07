@@ -1,34 +1,18 @@
-import { useQuery } from '@tanstack/react-query';
-import { getTodoById } from 'apis/todo';
 import { useInput } from 'hooks';
+import useTodoDetailQuery from 'hooks/queries/useTodoDetailQuery';
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import Path from 'routes/Path';
-import { useTodoQuery } from './TodoContainer';
-
-function useTodoDetailQuery(todoId: string) {
-  const QueryKey = 'todos';
-  const { data } = useQuery([QueryKey, todoId], () => getTodoById(todoId), {
-    cacheTime: 5 * 1000 * 60,
-    staleTime: 5 * 1000 * 60,
-    enabled: !!todoId,
-  });
-
-  return {
-    todo: data?.data,
-  };
-}
 
 function TodoDetailContainer() {
   const { todoId = '' } = useParams<'todoId'>();
-  const { todo } = useTodoDetailQuery(todoId);
+  const { todo, mutateDeleteTodo, mutateUpdateTodo } =
+    useTodoDetailQuery(todoId);
   const navigate = useNavigate();
   const [isUpdate, setIsUpdate] = useState(false);
   const [selectedTitle, onChangeSelectedTitle, setSelectedTitle] = useInput('');
   const [selectedContent, onChangeSelectedContent, setSelectedContent] =
     useInput('');
-
-  const { mutateDeleteTodo, mutateUpdateTodo } = useTodoQuery();
 
   const onToggleUpdate = () => {
     setIsUpdate(!isUpdate);
